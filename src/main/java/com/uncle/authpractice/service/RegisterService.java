@@ -28,7 +28,7 @@ public class RegisterService {
         user.setEmail(request.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         user.setFirstName(request.getFirstName());
-        user.setRole(Role.USER);
+        user.setRole(Role.CUSTOMER);
         user.setPhone(request.getPhone());
         user.setLastName(request.getLastName());
         User saved = userRepository.save(user);

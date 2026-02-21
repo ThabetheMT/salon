@@ -1,7 +1,8 @@
 package com.uncle.authpractice.model;
 
 public enum Role {
-    USER,
+    CUSTOMER,
     ADMIN,
-    STYLIST
+    STYLIST,
+    MANAGER
 }

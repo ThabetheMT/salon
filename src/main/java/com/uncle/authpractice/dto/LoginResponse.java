@@ -1,33 +1,33 @@
 package com.uncle.authpractice.dto;
 
 public class LoginResponse {
-    private String token;
-    private Object data;
+    private String acessToken;
+    private Object user;
     private String message;
 
     public LoginResponse() {
     }
 
-    public LoginResponse(String token, Object data, String message) {
-        this.token = token;
-        this.data = data;
+    public LoginResponse(String acessToken, Object user, String message) {
+        this.acessToken = acessToken;
+        this.user = user;
         this.message = message;
     }
 
-    public String getToken() {
-        return token;
+    public String getAcessToken() {
+        return acessToken;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setAcessToken(String acessToken) {
+        this.acessToken = acessToken;
     }
 
-    public Object getData() {
-        return data;
+    public Object getUser() {
+        return user;
     }
 
-    public void setData(Object data) {
-        this.data = data;
+    public void setUser(Object user) {
+        this.user = user;
     }
 
     public String getMessage() {

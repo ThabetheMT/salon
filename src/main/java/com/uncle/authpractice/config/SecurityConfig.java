@@ -30,11 +30,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/login", "/api/logout", "api/register", "/**").permitAll()
-                        .requestMatchers("/api/learner/**").hasRole("LEARNER")
+                        .requestMatchers("/api/auth/**", "/**").permitAll()
+                        .requestMatchers("/api/customer/**").hasRole("CUSTOMER")
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/teacher/**").hasRole("TEACHER")
-                        .requestMatchers("/api/user/**").hasRole("USER")
+                        .requestMatchers("/api/stylist/**").hasRole("STYLIST")
+                        .requestMatchers("/api/manager/**").hasRole("MANAGER")
                         .anyRequest().authenticated())
                 .addFilterBefore(new JwtAuthenticationFilter(util, customUserDetailsService),
                         UsernamePasswordAuthenticationFilter.class);
