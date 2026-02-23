@@ -1,0 +1,24 @@
+<nav class="navbar">
+    <a class="logo-area" onclick="navigateTo('home')">
+        <div class="logo-icon"><i class="fas fa-spa"></i></div>
+        <span class="salon-name">Caramel Glow</span>
+    </a>
+    <ul class="nav-links">
+        <li><a onclick="navigateTo('home')">Home</a></li>
+        <li class="dropdown">
+            <a href="#">Service <i class="fas fa-chevron-down" style="font-size:0.8rem;"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="#" onclick="quickBook('Nails')"><i class="fas fa-fingerprint"></i> Nails</a></li>
+                <li><a href="#" onclick="quickBook('Hair cut')"><i class="fas fa-cut"></i> Hair cut</a></li>
+                <li><a href="#" onclick="quickBook('Make Up')"><i class="fas fa-magic"></i> Make Up</a></li>
+            </ul>
+        </li>
+        <li><a onclick="document.getElementById('about')?.scrollIntoView({behavior: 'smooth'})">About Us</a></li>
+        <li><a id="loginLink" onclick="navigateTo('login')"><i class="fas fa-user-circle"></i> Login</a></li>
+        <li class="user-badge" id="userBadge" style="display: none;" onclick="showUserDashboard()">
+            <i class="fas fa-user"></i>
+            <span id="userName">Loading...</span>
+            <i class="fas fa-chevron-down"></i>
+        </li>
+    </ul>
+</nav>

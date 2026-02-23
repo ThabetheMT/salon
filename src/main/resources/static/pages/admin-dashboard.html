@@ -1,0 +1,166 @@
+<div class="admin-page">
+    <div class="container">
+        <div class="back-home" onclick="navigateTo('home')">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </div>
+
+        <div class="dashboard-header">
+            <h2 style="margin-bottom: 0;">Admin Dashboard</h2>
+            <div class="welcome-badge">
+                <i class="fas fa-crown" style="color: var(--caramel);"></i> <span id="adminName">Master Admin</span>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid" id="adminStats">
+            <div style="text-align: center; width: 100%; padding: 2rem;">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+
+        <!-- Admin Tabs -->
+        <div class="admin-tabs">
+            <div class="admin-tab active" onclick="switchAdminTab('appointments')">Appointments</div>
+            <div class="admin-tab" onclick="switchAdminTab('customers')">Customers</div>
+            <div class="admin-tab" onclick="switchAdminTab('stylists')">Stylists</div>
+            <div class="admin-tab" onclick="switchAdminTab('managers')">Managers</div>
+            <div class="admin-tab" onclick="switchAdminTab('services')">Services</div>
+            <div class="admin-tab" onclick="switchAdminTab('analytics')">Analytics</div>
+        </div>
+
+        <!-- Appointments Panel -->
+        <div id="appointmentsPanel" class="admin-panel active">
+            <table class="appointments-table">
+                <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Customer</th>
+                    <th>Service</th>
+                    <th>Stylist</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="appointmentsTableBody">
+                <tr>
+                    <td colspan="6" style="text-align: center;">
+                        <div class="loading-spinner"></div> Loading...
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Customers Panel -->
+        <div id="customersPanel" class="admin-panel">
+            <table class="appointments-table">
+                <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Total Visits</th>
+                    <th>Favorite Stylist</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="customersTableBody">
+                <tr>
+                    <td colspan="6" style="text-align: center;">
+                        <div class="loading-spinner"></div> Loading...
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Stylists Panel -->
+        <div id="stylistsPanel" class="admin-panel">
+            <table class="appointments-table">
+                <thead>
+                <tr>
+                    <th>Stylist</th>
+                    <th>Specialty</th>
+                    <th>Rating</th>
+                    <th>Today's Appts</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="stylistsTableBody">
+                <tr>
+                    <td colspan="6" style="text-align: center;">
+                        <div class="loading-spinner"></div> Loading...
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Managers Panel -->
+        <div id="managersPanel" class="admin-panel">
+            <table class="appointments-table">
+                <thead>
+                <tr>
+                    <th>Manager</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Store</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="managersTableBody">
+                <tr>
+                    <td colspan="6" style="text-align: center;">
+                        <div class="loading-spinner"></div> Loading...
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Services Panel -->
+        <div id="servicesPanel" class="admin-panel">
+            <table class="appointments-table">
+                <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                    <th>Popularity</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="servicesTableBody">
+                <tr>
+                    <td colspan="5" style="text-align: center;">
+                        <div class="loading-spinner"></div> Loading...
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Analytics Panel -->
+        <div id="analyticsPanel" class="admin-panel">
+            <div class="chart-container">
+                <canvas id="revenueChart"></canvas>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+                <div>
+                    <h3 style="color: var(--caramel-dark); margin-bottom: 1rem;">Popular Services</h3>
+                    <div style="background: #fff5ea; padding: 1.5rem; border-radius: 20px;" id="popularServices">
+                        <!-- Will be loaded from API -->
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: var(--caramel-dark); margin-bottom: 1rem;">Top Stylists</h3>
+                    <div style="background: #fff5ea; padding: 1.5rem; border-radius: 20px;" id="topStylists">
+                        <!-- Will be loaded from API -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

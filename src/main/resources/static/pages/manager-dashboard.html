@@ -1,0 +1,61 @@
+<div class="manager-page">
+    <div class="container">
+        <div class="back-home" onclick="navigateTo('home')">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </div>
+
+        <div class="manager-header">
+            <div class="manager-profile">
+                <div class="manager-avatar">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <div class="manager-info">
+                    <h2 id="managerName">Loading...</h2>
+                    <p><i class="fas fa-badge-check"></i> Salon Manager</p>
+                </div>
+            </div>
+            <div class="date-selector">
+                <i class="fas fa-calendar"></i>
+                <span id="currentDate"></span>
+            </div>
+        </div>
+
+        <div class="manager-stats" id="managerStats">
+            <div style="text-align: center; width: 100%; padding: 2rem;">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+
+        <div class="manager-grid">
+            <div class="staff-card">
+                <h3 style="color: var(--manager); margin-bottom: 1.5rem;"><i class="fas fa-users"></i> Staff on Duty</h3>
+                <div id="staffOnDuty">
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <h3 style="color: var(--manager); margin-bottom: 1.5rem;"><i class="fas fa-boxes"></i> Inventory Alert</h3>
+                <div id="inventoryAlerts">
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <button class="booking-btn" style="margin-top: 1.5rem; padding: 0.8rem; background: var(--manager);" onclick="reorderLowStock()">
+                    <i class="fas fa-truck"></i> Reorder Low Stock
+                </button>
+            </div>
+
+            <div class="staff-card" style="grid-column: span 2;">
+                <h3 style="color: var(--manager); margin-bottom: 1.5rem;"><i class="fas fa-chart-simple"></i> Today's Overview</h3>
+                <div id="todayOverview">
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

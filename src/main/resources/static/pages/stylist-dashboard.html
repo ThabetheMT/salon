@@ -1,0 +1,81 @@
+<div class="stylist-page">
+    <div class="container">
+        <div class="back-home" onclick="navigateTo('home')">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </div>
+
+        <div class="stylist-header">
+            <div class="stylist-profile">
+                <div class="stylist-avatar">
+                    <i class="fas fa-scissors"></i>
+                </div>
+                <div class="stylist-info">
+                    <h2 id="stylistName">Loading...</h2>
+                    <p><i class="fas fa-certificate"></i> <span id="stylistSpecialty">Loading...</span></p>
+                </div>
+            </div>
+            <div class="rating-badge">
+                <div class="stars" id="stylistStars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="number" id="stylistRating">4.8</div>
+                <div id="stylistReviewCount">from 156 reviews</div>
+            </div>
+        </div>
+
+        <div class="stylist-stats">
+            <div class="stat-card">
+                <i class="fas fa-calendar-check"></i>
+                <div class="value" id="todayAppointments">0</div>
+                <div class="label">Today's Appointments</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <div class="value" id="hoursLeft">0</div>
+                <div class="label">Hours Left</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-dollar-sign"></i>
+                <div class="value" id="todayEarnings">$0</div>
+                <div class="label">Today's Earnings</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-trophy"></i>
+                <div class="value" id="weeklyAppointments">0</div>
+                <div class="label">This Week</div>
+            </div>
+        </div>
+
+        <div class="schedule-grid">
+            <div class="time-slots">
+                <h3 style="color: var(--caramel-dark); margin-bottom: 1.5rem;"><i class="fas fa-clock"></i> Today's Schedule</h3>
+                <div id="todaySchedule">
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="availability-toggle">
+                <h3 style="color: var(--caramel-dark); margin-bottom: 1.5rem;"><i class="fas fa-toggle-on"></i> Availability</h3>
+                <div id="availabilityContainer">
+                    <div style="text-align: center; padding: 1rem;">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <button class="booking-btn" style="margin-top: 1.5rem; padding: 0.8rem;" onclick="updateAvailability()">Update Schedule</button>
+            </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <h3 style="color: var(--caramel-dark); margin-bottom: 1rem;"><i class="fas fa-chart-line"></i> Weekly Performance</h3>
+            <div style="background: white; border-radius: 30px; padding: 1.5rem;">
+                <canvas id="stylistChart" style="max-height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

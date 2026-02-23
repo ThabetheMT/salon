@@ -1,22 +1,20 @@
 package com.uncle.authpractice.controller;
 
 import com.uncle.authpractice.model.Role;
-import com.uncle.authpractice.model.User;
 import com.uncle.authpractice.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/auth")
-public class UserController {
+@RequestMapping("/api/public")
+public class PublicController {
 
     private final UserRepository userRepository;
 
-    public UserController(UserRepository userRepository) {
+    public PublicController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

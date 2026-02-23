@@ -3,16 +3,16 @@ package com.uncle.authpractice.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users_tbl")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String fullName;
     private String email;
     private String password;
-    private String firstName;
-    private String lastName;
     private String phone;
+    private String specialty;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -20,11 +20,20 @@ public class User {
     public User() {
     }
 
-    public User(String email, String password, String firstName, Role role) {
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.role = role;
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
     }
 
     public Long getId() {
@@ -51,28 +60,12 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public Role getRole() {
         return role;
     }
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getPhone() {

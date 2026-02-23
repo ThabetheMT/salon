@@ -27,10 +27,9 @@ public class RegisterService {
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
-        user.setFirstName(request.getFirstName());
+        user.setFullName(request.getFullName());
         user.setRole(Role.CUSTOMER);
         user.setPhone(request.getPhone());
-        user.setLastName(request.getLastName());
         User saved = userRepository.save(user);
 
         return new RegisterResponse(saved, "User registered successfully");
