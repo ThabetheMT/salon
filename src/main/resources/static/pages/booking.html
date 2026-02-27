@@ -1,0 +1,213 @@
+<div class="booking-page">
+    <div class="container">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+            <div class="back-home" onclick="navigateTo('home')" style="margin-bottom: 0;">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </div>
+            <div class="welcome-badge" style="background: var(--caramel); color: white;">
+                <i class="fas fa-calendar-check"></i> Book Your Appointment
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div style="background: white; border-radius: 60px; padding: 1rem; margin-bottom: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <div style="display: flex; justify-content: space-between; position: relative;">
+                <div style="position: absolute; top: 50%; left: 0; right: 0; height: 4px; background: #f3d5b9; transform: translateY(-50%); z-index: 1;"></div>
+                <div id="progressFill" style="position: absolute; top: 50%; left: 0; width: 0%; height: 4px; background: var(--caramel); transform: translateY(-50%); z-index: 2; transition: width 0.3s ease;"></div>
+
+                <div class="progress-step" data-step="1" style="position: relative; z-index: 3; background: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid var(--caramel); font-weight: 700; color: var(--caramel);">1</div>
+                <div class="progress-step" data-step="2" style="position: relative; z-index: 3; background: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #f3d5b9; font-weight: 700; color: #8b6f5a;">2</div>
+                <div class="progress-step" data-step="3" style="position: relative; z-index: 3; background: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #f3d5b9; font-weight: 700; color: #8b6f5a;">3</div>
+                <div class="progress-step" data-step="4" style="position: relative; z-index: 3; background: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #f3d5b9; font-weight: 700; color: #8b6f5a;">4</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; padding: 0 0.5rem;">
+                <span style="font-size: 0.9rem; font-weight: 600; color: var(--caramel);">Service</span>
+                <span style="font-size: 0.9rem; font-weight: 600; color: #8b6f5a;">Stylist</span>
+                <span style="font-size: 0.9rem; font-weight: 600; color: #8b6f5a;">Date & Time</span>
+                <span style="font-size: 0.9rem; font-weight: 600; color: #8b6f5a;">Confirm</span>
+            </div>
+        </div>
+
+        <!-- Main Booking Area -->
+        <div style="display: grid; grid-template-columns: 1fr 350px; gap: 2rem;">
+            <!-- Left Column - Booking Steps -->
+            <div>
+                <!-- Step 1: Service Selection -->
+                <div id="step1" class="booking-step" style="display: block;">
+                    <h2 style="color: var(--caramel-dark); margin-bottom: 1.5rem;">Choose Your Service</h2>
+                    <div class="services-grid" id="servicesGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                        <!-- Services will be loaded here -->
+                        <div style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Stylist Selection -->
+                <div id="step2" class="booking-step" style="display: none;">
+                    <h2 style="color: var(--caramel-dark); margin-bottom: 1.5rem;">Choose Your Stylist</h2>
+                    <div style="margin-bottom: 1rem;">
+                        <button class="action-btn edit" onclick="selectAnyStylist()" style="width: 100%; padding: 1rem; background: var(--caramel-light);">
+                            <i class="fas fa-user-check"></i> Any Available Stylist
+                        </button>
+                    </div>
+                    <div class="stylists-grid" id="stylistsGrid" style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
+                        <!-- Stylists will be loaded here -->
+                        <div style="text-align: center; padding: 2rem;">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Date & Time Selection -->
+                <div id="step3" class="booking-step" style="display: none;">
+                    <h2 style="color: var(--caramel-dark); margin-bottom: 1.5rem;">Choose Date & Time</h2>
+
+                    <div style="background: white; border-radius: 30px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Select Date</label>
+                        <input type="date" id="bookingDate" class="form-control" style="width: 100%; padding: 1rem; border: 2px solid #f3d5b9; border-radius: 30px;" onchange="loadAvailableSlots()">
+                    </div>
+
+                    <div id="timeSlotsSection" style="display: none;">
+                        <h3 style="color: var(--text-dark); margin-bottom: 1rem;">Available Time Slots</h3>
+                        <div class="time-slots-grid" id="timeSlotsGrid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem;">
+                            <!-- Time slots will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Confirmation -->
+                <div id="step4" class="booking-step" style="display: none;">
+                    <h2 style="color: var(--caramel-dark); margin-bottom: 1.5rem;">Confirm Your Details</h2>
+
+                    <div style="background: white; border-radius: 30px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                        <h3 style="color: var(--caramel); margin-bottom: 1rem;">Your Information</h3>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Full Name *</label>
+                            <input type="text" id="customerName" class="form-control" style="width: 100%; padding: 1rem; border: 2px solid #f3d5b9; border-radius: 30px;" placeholder="Enter your full name">
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email Address *</label>
+                            <input type="email" id="customerEmail" class="form-control" style="width: 100%; padding: 1rem; border: 2px solid #f3d5b9; border-radius: 30px;" placeholder="Enter your email">
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Phone Number *</label>
+                            <input type="tel" id="customerPhone" class="form-control" style="width: 100%; padding: 1rem; border: 2px solid #f3d5b9; border-radius: 30px;" placeholder="(555) 123-4567">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Special Requests (Optional)</label>
+                            <textarea id="customerNotes" class="form-control" rows="3" style="width: 100%; padding: 1rem; border: 2px solid #f3d5b9; border-radius: 30px;" placeholder="Any special requests or notes..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button id="prevBtn" class="action-btn edit" onclick="previousStep()" style="flex: 1; padding: 1rem; display: none;">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button id="nextBtn" class="booking-btn" onclick="nextStep()" style="flex: 2;">
+                        Next Step <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button id="confirmBtn" class="booking-btn" onclick="confirmBooking()" style="flex: 2; display: none; background: var(--success);">
+                        <i class="fas fa-check-circle"></i> Confirm Booking
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column - Booking Summary -->
+            <div style="background: white; border-radius: 40px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: sticky; top: 100px; height: fit-content;">
+                <h3 style="color: var(--caramel-dark); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-receipt"></i> Booking Summary
+                </h3>
+
+                <div style="margin-bottom: 2rem;">
+                    <div style="padding: 1rem 0; border-bottom: 1px dashed #f3d5b9;">
+                        <div style="color: #8b6f5a; font-size: 0.9rem; margin-bottom: 0.3rem;">Service</div>
+                        <div id="summaryService" style="font-weight: 600; color: var(--text-dark);">Not selected</div>
+                    </div>
+
+                    <div style="padding: 1rem 0; border-bottom: 1px dashed #f3d5b9;">
+                        <div style="color: #8b6f5a; font-size: 0.9rem; margin-bottom: 0.3rem;">Stylist</div>
+                        <div id="summaryStylist" style="font-weight: 600; color: var(--text-dark);">Not selected</div>
+                    </div>
+
+                    <div style="padding: 1rem 0; border-bottom: 1px dashed #f3d5b9;">
+                        <div style="color: #8b6f5a; font-size: 0.9rem; margin-bottom: 0.3rem;">Date</div>
+                        <div id="summaryDate" style="font-weight: 600; color: var(--text-dark);">Not selected</div>
+                    </div>
+
+                    <div style="padding: 1rem 0; border-bottom: 1px dashed #f3d5b9;">
+                        <div style="color: #8b6f5a; font-size: 0.9rem; margin-bottom: 0.3rem;">Time</div>
+                        <div id="summaryTime" style="font-weight: 600; color: var(--text-dark);">Not selected</div>
+                    </div>
+
+                    <div style="padding: 1rem 0;">
+                        <div style="color: #8b6f5a; font-size: 0.9rem; margin-bottom: 0.3rem;">Price</div>
+                        <div id="summaryPrice" style="font-weight: 700; font-size: 1.3rem; color: var(--caramel-dark);">$0</div>
+                    </div>
+                </div>
+
+                <div style="background: #fff5ea; border-radius: 20px; padding: 1rem;">
+                    <p style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                        <i class="fas fa-shield-alt" style="color: var(--caramel);"></i>
+                        Your appointment is securely booked
+                    </p>
+                    <p style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark); font-size: 0.9rem;">
+                        <i class="fas fa-clock" style="color: var(--caramel);"></i>
+                        Free cancellation up to 2 hours before
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Booking Confirmation Modal -->
+<div id="bookingConfirmModal" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 450px; text-align: center;">
+        <div style="background: var(--success); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+            <i class="fas fa-check" style="font-size: 3rem; color: white;"></i>
+        </div>
+
+        <h2 style="color: var(--text-dark); margin-bottom: 0.5rem;">Booking Confirmed!</h2>
+        <p style="color: #8b6f5a; margin-bottom: 2rem;">Your appointment has been successfully scheduled</p>
+
+        <div style="background: #fff5ea; border-radius: 30px; padding: 1.5rem; margin-bottom: 2rem; text-align: left;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #f3d5b9;">
+                <span style="color: #8b6f5a;">Service:</span>
+                <span style="font-weight: 600;" id="confirmService"></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #f3d5b9;">
+                <span style="color: #8b6f5a;">Stylist:</span>
+                <span style="font-weight: 600;" id="confirmStylist"></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #f3d5b9;">
+                <span style="color: #8b6f5a;">Date:</span>
+                <span style="font-weight: 600;" id="confirmDate"></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #f3d5b9;">
+                <span style="color: #8b6f5a;">Time:</span>
+                <span style="font-weight: 600;" id="confirmTime"></span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: #8b6f5a;">Total:</span>
+                <span style="font-weight: 700; color: var(--caramel-dark);" id="confirmPrice"></span>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem;">
+            <button class="action-btn edit" onclick="closeModal('bookingConfirmModal'); navigateTo('customer-dashboard')" style="flex: 1; padding: 1rem;">
+                View Dashboard
+            </button>
+            <button class="booking-btn" onclick="closeModal('bookingConfirmModal'); navigateTo('home')" style="flex: 1; padding: 1rem;">
+                Done
+            </button>
+        </div>
+    </div>
+</div>

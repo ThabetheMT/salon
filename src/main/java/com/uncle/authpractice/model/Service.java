@@ -1,7 +1,14 @@
 package com.uncle.authpractice.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+import java.math.BigDecimal;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "services")
 public class Service {
@@ -9,48 +16,24 @@ public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
-    private double price;
+
     private String description;
 
-    public Service() {
-    }
+    @Column(nullable = false)
+    private Integer duration; // in minutes
 
-    public Service(String name, double price, String description) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-    }
+    @Column(nullable = false)
+    private BigDecimal price;
 
-    public String getDescription() {
-        return description;
-    }
+    private String category;
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    private String imageUrl;
 
-    public Long getId() {
-        return id;
-    }
+    private Integer popularity = 0; // booking count
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private boolean active = true;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 }

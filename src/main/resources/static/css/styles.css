@@ -473,6 +473,76 @@ main {
     font-size: 1.6rem;
 }
 
+/* ========== BOOKING PAGE STYLES ========== */
+.booking-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fffaf2 0%, #fae1cf 100%);
+    padding: 2rem 0;
+}
+
+.booking-step {
+    background: white;
+    border-radius: 40px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.service-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--caramel);
+    box-shadow: 0 10px 25px rgba(217, 168, 126, 0.2);
+}
+
+.staff-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.staff-card:hover {
+    border-color: var(--caramel);
+    background: #fffaf2;
+    transform: translateX(5px);
+}
+
+.time-slot {
+    transition: all 0.2s ease;
+}
+
+.time-slot:hover {
+    background: var(--caramel-light);
+    border-color: var(--caramel);
+    transform: scale(1.05);
+}
+
+.progress-step {
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--caramel) !important;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(217, 168, 126, 0.2);
+}
+
+@media (max-width: 768px) {
+    .booking-page .container > div:first-child {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .time-slots-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
 /* ========== GALLERY ========== */
 .gallery-section {
     background: var(--warm-white);

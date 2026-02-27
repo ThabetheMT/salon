@@ -16,14 +16,14 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
+public class JwtAuthenticationFilter1 extends OncePerRequestFilter {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationFilter1.class);
 
     private final JwtUtil util;
     private final CustomUserDetailsService customUserDetailsService;
 
-    public JwtAuthenticationFilter(JwtUtil util, CustomUserDetailsService customUserDetailsService) {
+    public JwtAuthenticationFilter1(JwtUtil util, CustomUserDetailsService customUserDetailsService) {
         this.util = util;
         this.customUserDetailsService = customUserDetailsService;
 
